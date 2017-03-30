@@ -1,0 +1,49 @@
+{% extends 'order_frame_page.html' %}
+{% block left %}
+<div id="left">
+    <ul>
+        <li class="list-unstyled">
+            <a href="{% url 'order_pending' %}">
+                <h5>工单池</h5>
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'order_feched' %}">
+                <h5>我的在途工单</h5>
+            </a>
+        </li>
+        <li class="list-unstyled">
+            <a href="{% url 'order_archived' %}">
+                <h5>我的历史工单</h5>
+            </a>
+        </li>
+        <hr/>
+    </ul>
+</div>
+{% endblock %}
+{% block right %}
+<div id="right">
+    <div class="col-lg-2"></div>
+    <div class="col-lg-8">
+        <form action="" method="POST" enctype="multipart/form-data">{% csrf_token %}
+            <h3>需求内容</h3>
+            {{form.order_description}}
+            <hr/> {{form.approved_by}}
+            <hr/>
+            <div class="row">
+                <div class="col-md-6 col-lg-6">
+                    {{form.image}}
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <a href="{% url 'order_index' %}" class="btn btn-default form-control">返回</a>
+                </div>
+                <div class="col-md-3 col-lg-3">
+                    <input type="submit" class="btn btn-success form-control" value="提交"></input>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-lg-2"></div>
+</div>
+{% endblock %}

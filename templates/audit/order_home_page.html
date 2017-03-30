@@ -1,0 +1,35 @@
+{% extends 'order_frame_page.html' %}
+{% block left %}
+<div id="left">
+    <ul>
+        <li class="list-unstyled">
+            <a href="{% url 'order_pending' %}">
+                <h5>工单池</h5>
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'order_feched' %}">
+                <h5>我的在途工单</h5>
+            </a>
+        </li>
+        <li class="list-unstyled">
+            <a href="{% url 'order_archived' %}">
+                <h5>我的历史工单</h5>
+            </a>
+        </li>
+        <hr/>
+    </ul>
+</div>
+{% endblock %}
+{% block right %}
+<div id="right">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <h1>需求工单发起须知</h1>
+        </div>
+        <div class="col-lg-1"></div>
+    </div>
+</div>
+{% endblock %}

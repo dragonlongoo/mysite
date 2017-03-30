@@ -1,0 +1,85 @@
+{% extends 'order_frame_page.html' %}
+{% load render_table from django_tables2 %}
+{% block left %}
+<div id="left">
+    <ul>
+        <li class="list-unstyled">
+            <a href="{% url 'order_pending' %}">
+                <h5>工单池</h5>
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'order_feched' %}">
+                <h5>我的在途工单</h5>
+            </a>
+        </li>
+        <li class="list-unstyled">
+            <a href="{% url 'order_archived' %}">
+                <h5>我的历史工单</h5>
+            </a>
+        </li>
+        <hr/>
+    </ul>
+</div>
+{% endblock %} {% block right %}
+<div id="right">
+    <div class="col-lg-1"></div>
+    <div class="col-lg-10">
+        <h2>需求单</h2>
+        <table class="table table-bordered">
+            <tr>
+                <th>需求类型</th>
+                <th>发起人员</th>
+                <th>所属网点</th>
+                <th>发起时间</th>
+                <th>需求状态</th>
+                <th>当前处理人</th>
+                <th>当前环节</th>
+            </tr>
+            <tr>
+                <td>
+                    {{order.getOrderType}}
+                </td>
+                <td>
+                    {{order.created_by}}
+                </td>
+                <td></td>
+                <td>
+                    {{order.created_date}}
+                </td>
+                <td>
+                    {{order.order_state}}
+                </td>
+                <td>
+                    {{order.getCurrentHandledBy}}
+                </td>
+                <td>
+                    {{order.getTacheName}}
+                </td>
+            </tr>
+            <tr>
+                <th colspan="3">关联订单</th>
+                <th colspan="4">业务号码</th>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    {{order.related_order}}
+                </td>
+                <td colspan="4">
+                    {{order.x_integration_num}}
+                </td>
+            </tr>
+            <tr>
+                <th colspan="7">需求详情</th>
+            </tr>
+            <tr>
+                <td colspan="7">{{order.order_description}}</td>
+            </tr>
+        </table>
+        {% if order.image %} 附件：
+        <a href="{{order.image.url}}">{{order.image}}</a> {% else %} {% endif %}
+    </div>
+    <div class="col-lg-1"></div>
+</div>
+{% endblock %}

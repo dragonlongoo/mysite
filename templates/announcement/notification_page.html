@@ -1,0 +1,74 @@
+{% extends 'board_frame_page.html' %} {% block left %}
+<div id="left">
+    <ul id="menu">
+        <li class="list-unstyled">
+            <a href="#">
+                <h5>全部通知</h5>
+                <!--<button type="" class="btn btn-success">实名制</button>-->
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 1 %}">
+                <h5>实名制</h5>
+                <!--<button type="" class="btn btn-success">实名制</button>-->
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 2 %}">
+                <h5>营业受理</h5>
+                <!--<button type="" class="btn btn-success form-control">营业受理</button>-->
+            </a>
+        </li>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 3 %}">
+                <h5>产品资费</h5>
+                <!--<button type="" class="btn btn-success">产品资费</button>-->
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 4 %}">
+                <h5>业务开通</h5>
+                <!--<button type="" class="btn btn-success">业务开通</button>-->
+            </a>
+        </li>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 5 %}">
+                <h5>外线装维</h5>
+                <!--<button type="" class="btn btn-success">外线装维</button>-->
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 6 %}">
+                <h5>综合管理</h5>
+                <!--<button type="" class="btn btn-success">综合管理</button>-->
+            </a>
+        </li>
+    </ul>
+
+</div>
+{% endblock %} {% block right%}
+<div id="right">
+    <div class="row">
+        <div class="col-lg-1"></div>
+        <div class="col-lg-10">
+            <h1 class="text-left">{{notification.title}}</h1>
+            {% if editable%}
+            <a href="{% url 'notification_edit' notification.id %}">
+                <button type="button" class="btn btn-default btn-sm">编辑</button>
+            </a>
+            <a href="#">
+                <button type="button" class="btn btn-success btn-sm">作者</button>
+            </a>
+            {% endif %} {% if notification.image %} 附件：
+            <a href="{{notification.image.url}}">{{notification.image}}</a> {% endif %}
+            <hr/>
+            <div class="content-markdown">{{notification.content}}</div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

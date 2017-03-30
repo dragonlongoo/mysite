@@ -1,0 +1,6 @@
+announcement/migrations/
+wiki/migrations/
+user/migrations/
+audit/migrations/
+media_cdn/
+*.pyc

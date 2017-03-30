@@ -1,0 +1,89 @@
+<!DOCTYPE html>{% load staticfiles %}
+<html lang="zh-CN">
+
+<head>
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-select.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap-select.min.js' %}"></script>
+</head>
+
+<body>
+    <div class="container">
+        <nav class="navbar navbar-default">
+            <div class="container-fluid">
+                <div class="navbar-header">
+                    <a class="navbar-brand" href="#">运营知识平台</a>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="{% url 'login' %}">登录</a></li>
+                    </ul>
+                </div>
+                <!-- /.navbar-collapse -->
+            </div>
+            <!-- /.container-fluid -->
+        </nav>
+        <div class="jumbotron">
+            <h1>注册后加入运营知识平台</h1>
+            <div class="row">
+                <div class="col-md-6">
+                    <!--<div>
+                        <h3>注册后你可以</h3>
+                    </div>
+                    <ul class="list-unstyled" style="line-height: 2">
+                        <li>发布业务通知</li>
+                        <li>发布业务知识</li>
+                    </ul>-->
+                    <div>
+                        <h3>注册须知</h3>
+                    </div>
+                    <ul class="list-unstyled" style="line-height: 2">
+                        <li>用户名为8-32位英文数字组合</li>
+                        <li>密码为8-32为英文数字符号组合</li>
+                        <li>邮件请填写EIP或189邮箱地址</li>
+                    </ul>
+                </div>
+                <div class="col-md-6">
+                    <form action="{% url 'register' %}" method="POST">{% csrf_token %} {{ form.errors }} {{ form.non_field_errors }}
+                        <!--{{ register_form.as_p }}-->
+                        <table>
+                            <tr>
+                                <td><h4>{{register_form.username.label}}*</h4></td>
+                                <td>{{register_form.username}}</td>
+                            </tr>
+                            <tr>
+                                <td><h4>{{register_form.password.label}}*</h4></td>
+                                <td>{{register_form.password}}</td>
+                            </tr>
+                            <tr>
+                                <td><h4>{{register_form.email.label}}*</h4></td>
+                                <td>{{register_form.email}}</td>
+                            </tr>
+                            <tr>
+                                <td><h4>{{register_form.full_name.label}}*</h4></td>
+                                <td>{{register_form.full_name}}</td>
+                            </tr>
+                            <tr>
+                                <td><h4>{{register_form.department.label}}*</h4></td>
+                                <td>{{register_form.department}}</td>
+                            </tr>
+                            <tr>
+                                <td><h4>{{register_form.contact.label}}*</h4></td>
+                                <td>{{register_form.contact}}</td>
+                            </tr>
+                        </table>
+                        <p>
+                            * 点击创建用户，代表你同意我们的<a href="#">条款</a>，并已阅读了我们的<a href="#">数据使用政策</a>， 包括 <a href="#">Cookie使用政策</a>。
+                        </p>
+
+                        <button type="submit" class="btn btn-primary btn-lg">创建用户</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

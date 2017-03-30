@@ -1,0 +1,62 @@
+{% extends 'board_frame_page.html' %} {% block left %}
+<div id="left">
+    <ul id="menu">
+        <li class="list-unstyled">
+            <a href="#">
+                <h5>全部通知</h5>
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 1 %}">
+                <h5>实名制</h5>
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 2 %}">
+                <h5>营业受理</h5>
+            </a>
+        </li>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 3 %}">
+                <h5>产品资费</h5>
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 4 %}">
+                <h5>业务开通</h5>
+            </a>
+        </li>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 5 %}">
+                <h5>外线装维</h5>
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'notification_category' 6 %}">
+                <h5>综合管理</h5>
+            </a>
+        </li>
+    </ul>
+</div>
+{% endblock%} {% block right %}
+<div id="right">
+    <div class="page-header">
+
+    </div>
+    <ol>
+        {% for n in notifications %}
+        <li class="list-unstyled">
+            <a href="{% url 'notification' n.id %}">
+                {{n.title}}
+                <br/>
+            </a>
+            {{n.created_by}} {{n.created_date}}
+        </li>
+        <hr/> {% endfor %}
+    </ol>
+</div>
+{% endblock %}

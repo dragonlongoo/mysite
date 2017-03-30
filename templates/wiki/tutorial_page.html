@@ -1,0 +1,28 @@
+{% extends 'wiki_frame_page.html' %}
+{% block left%}
+<div id="left">
+    <h4>{{tutorial.subject}}</h4>
+    <a href="{% url 'wiki_post' tutorial.category %}">
+        <button type="button" class="btn btn-success btn-sm">新增章节</button>
+    </a>
+    <hr/>
+    <ul id="ul">
+        {% for c in chapters %}
+        <li class="list-unstyled">
+            <a href="{% url 'chapter' tutorial.category c.id %}">{{c.subject}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+{% endblock %} {% block right %}
+<div id="right">
+    <h4>{{ tutorial.subject}}</h4>
+    <a href="#">
+        <button type="button" class="btn btn-success btn-sm">编辑教程</button>
+    </a>
+    <hr/> {{tutorial.content}}
+    <li class="list-unstyled">
+
+    </li>
+</div>
+{% endblock %}

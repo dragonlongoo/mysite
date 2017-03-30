@@ -1,0 +1,30 @@
+{% extends 'order_frame_page.html' %}
+{% load render_table from django_tables2 %}
+{% block left %}
+<div id="left">
+    <ul>
+        <li class="list-unstyled">
+            <a href="{% url 'order_pending' %}">
+                <h5>工单池</h5>
+            </a>
+        </li>
+        <hr/>
+        <li class="list-unstyled">
+            <a href="{% url 'order_feched' %}">
+                <h5>我的在途工单</h5>
+            </a>
+        </li>
+        <li class="list-unstyled">
+            <a href="{% url 'order_archived' %}">
+                <h5>我的历史工单</h5>
+            </a>
+        </li>
+        <hr/>
+    </ul>
+</div>
+{% endblock %}
+{% block right %}
+<div id="right">
+    {% render_table table %}
+</div>
+{% endblock %}
