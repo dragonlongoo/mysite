@@ -3,8 +3,4 @@ wiki/migrations/
 user/migrations/
 audit/migrations/
 media_cdn/
-mysite/settings.py
-*.ini
-*.conf
-uwsgi_params
 *.pyc
