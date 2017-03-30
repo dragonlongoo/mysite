@@ -8,8 +8,10 @@ from mysite import settings
 def show_home_page(request):
     if request.user.is_authenticated():
         _notifications = Notification.objects.all()
+        _role = request.user.subscriber.role
         context = {
-                "notifications": _notifications
+                "notifications": _notifications,
+                "role": _role
             }
         return render(request, "board_home_page.html", context)
     else:
@@ -17,24 +19,28 @@ def show_home_page(request):
 
 def show_notifications(request, notification=None, notifications=None):
     _editable = False
+    _role = request.user.subscriber.role
     if notification:
         if request.user.id == notification.created_by:
             _editable = True
             context = {
                 "notifications": notifications,
                 "notification": notification,
-                "editable": _editable
+                "editable": _editable,
+                "role": _role
             }
             return render(request, "notification_page.html", context)
         else:
             context = {
                 "notifications": notifications,
-                "notification": notification
+                "notification": notification,
+                "role": _role
             }
             return render(request, "notification_page.html", context)
     else:
         context = {
-            "notifications": notifications
+            "notifications": notifications,
+            "role": _role
         }
         return render(request, "board_home_page.html", context)
 

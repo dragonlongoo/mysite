@@ -11,8 +11,10 @@ class Privilege(models.Model):
 class Role(models.Model):
     role_code = models.CharField(max_length=8)
     role_name = models.CharField(max_length=16)
-    privileges = models.ManyToManyField(Privilege)
+    # privileges = models.ManyToManyField(Privilege)
     created_date = models.DateTimeField(auto_now_add=True)
+    def __unicode__(self):
+        return role_name
 
 class Department(models.Model):
     department_name = models.CharField(max_length=32)
@@ -27,8 +29,8 @@ class Subscriber(User):
     contact = models.CharField(max_length=32)
     department = models.ForeignKey(Department)
     is_expert = models.BooleanField(default=False)
-    privileges = models.ManyToManyField(Privilege, null=True)
-    roles = models.ManyToManyField(Role)
+    privileges = models.CharField(max_length=32, null=True)
+    role = models.CharField(max_length=32, null=True)
     created_date = models.DateTimeField(auto_now_add=True)
 
     def __unicode__(self):
@@ -39,3 +41,7 @@ class Subscriber(User):
             self.set_password(new_password)
     def config_user(self, *args, **kwargs):
         pass
+    def get_role(self):
+        role = Role.objects.get(role_code=self.role)
+        return role
+    

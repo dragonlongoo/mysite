@@ -122,7 +122,9 @@
             <div>
                 <ul class="nav navbar-nav">
                     <li><a href="{% url 'board_index' %}">首页</a></li>
+                    {% if role == "editor" %}
                     <li><a href="{% url 'notification_create' %}">创建</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <ul class="nav navbar-nav navbar-right">

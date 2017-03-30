@@ -2,7 +2,7 @@
 <div id="left">
     <ul id="menu">
         <li class="list-unstyled">
-            <a href="#">
+            <a href="{% url 'board_index' %}">
                 <h5>全部通知</h5>
             </a>
         </li>
@@ -45,7 +45,6 @@
 {% endblock%} {% block right %}
 <div id="right">
     <div class="page-header">
-
     </div>
     <ol>
         {% for n in notifications %}

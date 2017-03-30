@@ -21,7 +21,7 @@ class Notification(models.Model):
     created_by = models.IntegerField()
     outdated = models.BooleanField(default=False)
     content = models.TextField()
-    image = models.ImageField(null=True, blank=True)
+    image = models.FileField(null=True, blank=True)
 
     def get_category(self):
         return Category.objects.get(id=self.category_id)
