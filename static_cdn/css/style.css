@@ -110,3 +110,12 @@ body {
   padding: 0px;
   margin: 0px;
 }
+
+#p1 {
+      white-space: nowrap;
+      width: 100%;                  /* IE6 需要定义宽度 */
+      overflow: hidden;             
+ 
+      -o-text-overflow: ellipsis;    /* Opera */
+      text-overflow:    ellipsis;    /* IE, Safari (WebKit) */
+   }
