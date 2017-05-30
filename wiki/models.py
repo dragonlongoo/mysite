@@ -33,14 +33,21 @@ class Tutorial(models.Model):
     subject = models.CharField(max_length=32)
     content = models.TextField()
     category = models.CharField(max_length=32)
+    def __unicode__(self):
+        return self.subject
     def get_absolute_url(self):
         return "/tutorial/%d" % self.id
 
 class Chapter(models.Model):
+    class Meta:
+        verbose_name = "知识库"
+        verbose_name_plural = "知识库"
     tutorial = models.ForeignKey(Tutorial)
     subject = models.CharField(max_length=32)
     content = models.TextField()
     chapter_index = models.IntegerField(null=True)
+    def __unicode__(self):
+        return self.subject
     def get_absolute_url(self):
         return "/wiki/%s/chapter/%d" % (self.tutorial.category, self.id)
 
@@ -49,5 +56,7 @@ class Section(models.Model):
     subject = models.CharField(max_length=32)
     content = models.TextField()
     section_index = models.IntegerField(null=True)
+    def __unicode__(self):
+        return self.subject
     def get_absolute_url(self):
         return "chapter/section/%d" % self.section_index

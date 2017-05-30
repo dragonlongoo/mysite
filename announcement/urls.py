@@ -1,5 +1,6 @@
 import views
-from django.conf.urls import url
+from django.conf.urls import url, include
+from haystack import urls
 urlpatterns = [
     url(r'^index/$', views.show_home_page, name="board_index"),
     url(
@@ -19,4 +20,5 @@ urlpatterns = [
         name="notification_edit"
         ),
     url(r'^create/$', views.create_notification, name="notification_create"),
+    # url(r'^search/$', include('haystack.urls'), name="n_search"),
 ]

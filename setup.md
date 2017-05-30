@@ -168,3 +168,12 @@ t = Tutorial(subject="数据字典业务知识教程",content="数据字典业�
 t.save()
 
 ```
+
+r = Role(role_code="user", role_name="普通用户")
+r.save()
+r = Role(role_code="editor", role_name="编辑")
+r.save()
+r = Role(role_code="operator", role_name="工单处理")
+r.save()
+r = Role(role_code="admin", role_name="管理员")
+r.save()

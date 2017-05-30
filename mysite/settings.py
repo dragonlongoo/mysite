@@ -28,6 +28,15 @@ DEBUG =True
 # ALLOWED_HOSTS = ['134.99.9.101']
 ALLOWED_HOSTS=[]
 
+# Haystack config
+HAYSTACK_CONNECTIONS = {
+    'default': {
+        # 'ENGINE': 'haystack.backends.whoosh_backend.WhooshEngine',
+        'ENGINE': 'announcement.whoosh_cn_backend.WhooshEngine',
+        'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
+    },
+}
+HAYSTACK_SIGNAL_PROCESSOR = "haystack.signals.RealtimeSignalProcessor"
 
 # Application definition
 
@@ -38,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'haystack',
     'announcement',
     'user',
     'wiki',

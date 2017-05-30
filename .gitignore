@@ -3,4 +3,5 @@ wiki/migrations/
 user/migrations/
 audit/migrations/
 media_cdn/
+mysite/whoosh_index/
 *.pyc

@@ -14,6 +14,9 @@ class Category(models.Model):
         return self.category_name
 
 class Notification(models.Model):
+    class Meta:
+        verbose_name = "公告"
+        verbose_name_plural = "公告"
     title = models.CharField(max_length=128)
     category_id = models.IntegerField()
     created_date = models.DateTimeField(auto_now_add=True)
@@ -22,6 +25,9 @@ class Notification(models.Model):
     outdated = models.BooleanField(default=False)
     content = models.TextField()
     image = models.FileField(null=True, blank=True)
+
+    def __unicode__(self):
+        return self.title
 
     def get_category(self):
         return Category.objects.get(id=self.category_id)

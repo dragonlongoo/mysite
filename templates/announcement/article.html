@@ -1,0 +1,51 @@
+<!DOCTYPE html> {% load staticfiles %}
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>文章</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+
+    <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/markdown.js' %}"></script>
+    <script src="{% static 'js/to-markdown.js' %}"></script>
+    <script src="{% static 'js/bootstrap-markdown.js' %}"></script>
+    <script src="{% static 'js/bootstrap-markdown.fr.js' %}"></script>
+    <script src="{% static 'js/marked.min.js'%}"></script>
+    
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $(".content-markdown").each(function () {
+                var content = $(this).text()
+                var markedcontent = marked(content)
+                $(this).html(markedcontent)
+            })
+        })
+    </script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-2 col-lg-2"></div>
+            <div class="col-xs-12 col-sm-12 col-md-8 col-lg-8">
+                <div class="jumbotron">
+                    <h1>{{notification.title}}</h1>
+                    {{author}}{{notification.created_date}}
+                    {% if notification.image %} 附件：
+                    <a href="{{notification.image.url}}">{{notification.image}}</a> {% endif %}
+                    <br>
+                    {% if editable%}
+                    <a href="#" class="btn btn-success btn-sm">编辑</a>
+                    {% endif %} 
+                    <a href="#" class="btn btn-info btn-sm">联系作者</a>
+                </div>
+                <p class="content-markdown">{{notification.content}}</p>
+            </div>
+            <div class="col-md-2 col-lg-2"></div>
+        </div>
+    </div>
+</body>
+
+</html>
