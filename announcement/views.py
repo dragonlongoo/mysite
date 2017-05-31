@@ -16,7 +16,7 @@ def show_home_page(request):
         }
     return render(request, "article_list.html", context)
 
-def show_notifications(request, notification=None, notifications=None):
+def show_notifications(request, notification=None, notifications=None, category=None):
     _editable = False
     _role = None
     if request.user.is_authenticated():
@@ -40,6 +40,7 @@ def show_notifications(request, notification=None, notifications=None):
             return render(request, "article.html", context)
     else:
         context = {
+            "category": category,
             "notifications": notifications,
             "role": _role
         }
@@ -68,7 +69,7 @@ def create_notification(request):
             context = {
                 "form":blank_postform
             }
-            return render(request, "handle_notification.html", context)
+            return render(request, "article_post.html", context)
     else:
         return HttpResponse("请先登录")
 
@@ -77,17 +78,14 @@ def edit_notification(request, notificationid=None):
     _notification = get_object_or_404(Notification, id=notificationid)
     _postform = PostForm(request.POST or None, instance=_notification)
     if request.method == "POST" and _postform.is_valid():
-        if _postform.is_valid():
-            instance = _postform.save(commit=False)
-            instance.save()
-            return HttpResponseRedirect(instance.get_absolute_url())
-        else:
-            return HttpResponse("failed")
+        instance = _postform.save(commit=False)
+        instance.save()
+        return HttpResponseRedirect(instance.get_absolute_url())
     else:
         context = {
             "form": _postform
         }
-        return render(request, "handle_notification.html", context=context)
+        return render(request, "article_post.html", context=context)
 
 
 def view_or_handle_notification(request, notificationid=None, categoryid=None):
@@ -96,8 +94,8 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
         _notifications = Notification.objects.filter(category_id=_notification.category_id)
         return show_notifications(request, notification=_notification, notifications=_notifications)
     elif categoryid:
-        # _category = Category.objects.get(id=categoryid)
+        _category = Category.objects.get(id=categoryid)
         _notifications = Notification.objects.filter(category_id=categoryid)
-        return show_notifications(request, notifications=_notifications)
+        return show_notifications(request, notifications=_notifications, category=_category)
     else:
         return create_notification(request)

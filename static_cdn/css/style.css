@@ -119,3 +119,8 @@ body {
       -o-text-overflow: ellipsis;    /* Opera */
       text-overflow:    ellipsis;    /* IE, Safari (WebKit) */
    }
+
+h1 {
+  border-color: black;
+  border-width: 10px;
+}
