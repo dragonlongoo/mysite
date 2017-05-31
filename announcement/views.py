@@ -76,11 +76,18 @@ def create_notification(request):
 
 def edit_notification(request, notificationid=None):
     _notification = get_object_or_404(Notification, id=notificationid)
-    _postform = PostForm(request.POST or None, instance=_notification)
+    # _postform = PostForm(request.POST or None, instance=_notification)
+    _postform = PostForm(request.POST or None, request.FILES or None, instance=_notification)
     if request.method == "POST" and _postform.is_valid():
-        instance = _postform.save(commit=False)
-        instance.save()
-        return HttpResponseRedirect(instance.get_absolute_url())
+        _notification.image = _postform.cleaned_data["image"]
+        _notification.category_id = _postform.cleaned_data["category_id"]
+        _notification.title = _postform.cleaned_data["title"]
+        _notification.content = _postform.cleaned_data["content"]
+        _notification.save()
+        # instance = _postform.save(commit=False)
+        # instance.save()
+        return HttpResponseRedirect(_notification.get_absolute_url())
+        # return HttpResponseRedirect(instance.get_absolute_url())
     else:
         context = {
             "form": _postform

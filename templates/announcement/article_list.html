@@ -12,6 +12,8 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
+                <h1></h1>
+                <br>
                 <!--<li class=""><a href="#">全部 <span class="sr-only">(current)</span></a></li>-->
                 <ul class="nav nav-sidebar">
                     <!--<li class="active" id="li1"><a class="a1" href="#"><h4>搜索</h4><span class="sr-only">(current)</span></a></li>-->
@@ -27,25 +29,33 @@
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a  class="a1" href="{% url 'notification_category' 2 %}"><h4>营业受理</h4></a></li>
+                    {% if visible %}
                     <li><a  class="a1" href="">&nbsp&nbsp&nbsp爱销售</a></li>
                     <li><a  class="a1" href="">&nbsp&nbsp&nbsp集团4G</a></li>
                     <li><a  class="a1" href="">&nbsp&nbsp&nbspCRM</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a  class="a1" href="{% url 'notification_category' 3 %}"><h4>产品资费</h4></a></li>
+                    {% if visible %}
                     <li><a  class="a1" href="">&nbsp&nbsp&nbsp销账</a></li>
                     <li><a  class="a1" href="">&nbsp&nbsp&nbspOOCP</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a  class="a1" href="{% url 'notification_category' 4 %}"><h4>配置开通</h4></a></li>
+                    {% if visible %}
                     <li><a  class="a1" href="">&nbsp&nbsp&nbsp资源</a></li>
                     <li><a  class="a1" href="">&nbsp&nbsp&nbsp服开</a></li>
                     <li><a  class="a1" href="">&nbsp&nbsp&nbsp激活</a></li>
+                    {% endif %}
                 </ul>
                 <ul class="nav nav-sidebar">
                     <li><a  class="a1" href="{% url 'notification_category' 5 %}"><h4>外线装维</h4></a></li>
+                    {% if visible %}
                     <li><a  class="a1" href="">&nbsp&nbsp&nbsp客调</a></li>
                     <li><a  class="a1" href="">&nbsp&nbsp&nbsp即销即通</a></li>
+                    {% endif %}
                 </ul>
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
