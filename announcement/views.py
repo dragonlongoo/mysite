@@ -8,6 +8,7 @@ from mysite import settings
 def show_home_page(request):
     _role = None
     _notifications = Notification.objects.all()
+    _user = None
     if request.user.is_authenticated():
         _role = request.user.subscriber.role
         _user = request.user
