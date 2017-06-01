@@ -19,6 +19,7 @@ from django.conf.urls import *
 from django.contrib import admin
 from mysite import views
 from announcement.views import show_home_page
+from haystack.views import SearchView
 
 urlpatterns = [
     # url(r'^$', views.user_landing, name="landing_page"),
@@ -29,10 +30,9 @@ urlpatterns = [
     url(r'^order/', include('audit.urls')),
     url(r'^wiki/', include('wiki.urls')),
     url(r'^user/', include('user.urls')),
-    url(r'^search/', include('haystack.urls')),
+    url(r'^search/', SearchView(), name="search_view"),
 ]
 
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
-    

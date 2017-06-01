@@ -10,9 +10,11 @@ def show_home_page(request):
     _notifications = Notification.objects.all()
     if request.user.is_authenticated():
         _role = request.user.subscriber.role
+        _user = request.user
     context = {
         "notifications": _notifications,
-        "role": _role
+        "role": _role,
+        "user": _user
         }
     return render(request, "article_list.html", context)
 

@@ -14,10 +14,16 @@
             <div class="col-sm-3 col-md-2 sidebar">
                 <h1></h1>
                 <br>
+                {% if user %}
+                <ul class="nav nav-sidebar">
+                    <li><a  class="a1" href="{% url 'logout' %}"><h4>{{user.username}}(点击登出)</h4></a></li>
+                </ul>
+                {% endif %}
+                <br>
                 <!--<li class=""><a href="#">全部 <span class="sr-only">(current)</span></a></li>-->
                 <ul class="nav nav-sidebar">
                     <!--<li class="active" id="li1"><a class="a1" href="#"><h4>搜索</h4><span class="sr-only">(current)</span></a></li>-->
-                    <li><a  class="a1" href="#"><h4>搜索文章</h4></a></li>
+                    <li><a  class="a1" href="{% url 'search_view' %}"><h4>搜索文章</h4></a></li>
                 </ul>
                 {% if role == "editor" %}
                 <ul class="nav nav-sidebar">

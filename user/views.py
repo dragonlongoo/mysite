@@ -46,7 +46,8 @@ def user_login(request):
                 return HttpResponse("admin请使用其他url登录")
             else:
                 # 其他账号登录后进入普通界面
-                return HttpResponseRedirect(reverse("user_page"))
+                # return HttpResponseRedirect(reverse("user_page"))
+                return HttpResponseRedirect(reverse("board_index"))                
         else:
             return HttpResponse("账号或密码错")
     else:

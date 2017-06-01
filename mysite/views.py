@@ -10,7 +10,8 @@ def user_landing(request):
         if request.user.username == "admin":
             return HttpResponseRedirect(reverse("admin_page"))
         else:
-            return HttpResponseRedirect(reverse("user_page"))
+            # return HttpResponseRedirect(reverse("user_page"))
+            return HttpResponseRedirect(reverse("board_index"))
     else:
         return HttpResponseRedirect(reverse("login"))
 
