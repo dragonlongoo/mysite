@@ -124,3 +124,13 @@ h1 {
   border-color: black;
   border-width: 10px;
 }
+hr {
+  margin: 0px;
+  /*padding: 0px;*/
+  border: 2px border-style red;
+}
+
+.jumbotron {
+  padding: 0px;
+  margin: 0px;
+}

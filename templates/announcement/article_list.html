@@ -6,30 +6,31 @@
     <title>内容列表</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
     <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    
 </head>
 
 <body>
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
-                <h1></h1>
-                <br>
-                {% if user %}
-                <ul class="nav nav-sidebar">
-                    <li><a  class="a1" href="{% url 'logout' %}"><h4>{{user.username}}(点击登出)</h4></a></li>
-                </ul>
-                {% endif %}
-                <br>
                 <!--<li class=""><a href="#">全部 <span class="sr-only">(current)</span></a></li>-->
                 <ul class="nav nav-sidebar">
                     <!--<li class="active" id="li1"><a class="a1" href="#"><h4>搜索</h4><span class="sr-only">(current)</span></a></li>-->
                     <li><a  class="a1" href="{% url 'search_view' %}"><h4>搜索文章</h4></a></li>
                 </ul>
+                <hr>
                 {% if role == "editor" %}
                 <ul class="nav nav-sidebar">
                     <li><a  class="a1" href="{% url 'notification_create' %}"><h4>新建文章</h4></a></li>
                 </ul>
+                <hr>
                 {% endif %}
+
+                <ul class="nav nav-sidebar">
+                    <li><a  class="a1" href="{% url 'board_index' %}"><h4>全部文章</h4></a></li>
+                </ul>
                 <ul class="nav nav-sidebar">
                     <li><a  class="a1" href="{% url 'notification_category' 1 %}"><h4>实名制</h4></a></li>
                 </ul>
@@ -63,16 +64,32 @@
                     <li><a  class="a1" href="">&nbsp&nbsp&nbsp即销即通</a></li>
                     {% endif %}
                 </ul>
+                <hr>
+                {% if user %}
+                <ul class="nav nav-sidebar">
+                    <li>
+                        <a href="#" class="a1" data-toggle="dropdown">
+                            <h4>{{user.username}}<span class="caret"></span></h4>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href="{% url 'logout' %}">登出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <hr>
+                {% endif %}
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1 class="page-header">{{category}}</h1>
                 {% for n in notifications %}
                 <a class="a2" href="{% url 'notification' n.id %}"><h3>{{n.title}}</h3></a>
-                <p id="p1">{{n.content}}</p>
+                <p id="p1"> {{n.content}}</p>
                 {% endfor %}
             </div>
         </div>
     </div>
+
+    
 </body>
 
 </html>

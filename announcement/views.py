@@ -22,8 +22,10 @@ def show_home_page(request):
 def show_notifications(request, notification=None, notifications=None, category=None):
     _editable = False
     _role = None
+    _user = None
     if request.user.is_authenticated():
         _role = request.user.subscriber.role
+        _user = request.user
     if notification:
         if request.user.id == notification.created_by:
             _editable = True
@@ -31,21 +33,24 @@ def show_notifications(request, notification=None, notifications=None, category=
                 # "notifications": notifications,
                 "notification": notification,
                 "editable": _editable,
-                "role": _role
+                "role": _role,
+                "user": _user
             }
             return render(request, "article.html", context)
         else:
             context = {
                 "notifications": notifications,
                 "notification": notification,
-                "role": _role
+                "role": _role,
+                "user": _user
             }
             return render(request, "article.html", context)
     else:
         context = {
             "category": category,
             "notifications": notifications,
-            "role": _role
+            "role": _role,
+            "user": _user
         }
         return render(request, "article_list.html", context)
 
