@@ -1,6 +1,7 @@
 #coding:utf-8
 from django import forms
 from .models import *
+# from pagedown.widgets import PagedownWidget
 from haystack.forms import ModelSearchForm
 
 
@@ -29,11 +30,13 @@ class PostForm(forms.ModelForm):
                     "id": "editor"
                     }
                 ),
-            "image": forms.ClearableFileInput(
-                attrs={
-                    "multiple": True
-                }
-            )
+            # "content": PagedownWidget(),
+            # "content": PagedownWidget(attrs={"template": "default.html"}),
+            # "image": forms.ClearableFileInput(
+            #     attrs={
+            #         "multiple": True
+            #     }
+            # )
             }
 
 CUSTOM_CHOICES = (

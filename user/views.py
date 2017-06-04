@@ -4,7 +4,9 @@ from django.shortcuts import HttpResponseRedirect, render, HttpResponse
 from django.core.urlresolvers import reverse
 from django.contrib.auth import authenticate, login, logout
 from .forms import Register_Form, Login_Form
-from .models import Subscriber
+from .models import Subscriber, Privilege
+from django_tables2.config import RequestConfig
+from user.tables import user_table
 
 def user_register(request):
     register_form = Register_Form(request.POST or None)
@@ -60,3 +62,16 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse("login"))
+
+def user_admin(request):
+    return render(request, "user_admin.html")
+
+def user_panel(request):
+    table = user_table(Subscriber.objects.all())
+    users = Subscriber.objects.all()
+    RequestConfig(request, paginate={"per_page": 10}).configure(table)
+    context = {
+        "table": table,
+        "users": users
+    }
+    return render(request, "user_panel.html", context=context)

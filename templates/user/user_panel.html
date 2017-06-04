@@ -1,0 +1,35 @@
+{% extends 'admin_panel.html' %} {% load render_table from django_tables2 %} {% block panel %}
+<h1>用户管理</h1>
+<hr>
+<!--{% render_table table %}-->
+<table id="t1">
+    <thead id="th1">
+        <tr>
+            <td>ID</td>
+            <td>用户名</td>
+            <td>姓名</td>
+            <td>联系方式</td>
+            <td>邮件</td>
+            <td>部门</td>
+            <td>角色</td>
+            <td>创建时间</td>
+            <td>操作</td>
+        </tr>
+    </thead>
+    <tbody>
+        {% for u in users %}
+        <tr>
+            <td>{{u.id}}</td>
+            <td>{{u.username}}</td>
+            <td>{{u.full_name}}</td>
+            <td>{{u.contact}}</td>
+            <td>{{u.email}}</td>
+            <td>{{u.department}}</td>
+            <td>{{u.role}}</td>
+            <td>{{u.created_date}}</td>
+            <td><a href="/user/{{user.id}}/config/">修改</a></td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

@@ -1,21 +1,24 @@
 <!DOCTYPE html> {% load staticfiles %}
+
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/prism_okaidia.css' %}">
+    <!--<link href="{% static 'css/style.css' %}" rel="stylesheet">-->
     <script src="{% static 'js/jquery.min.js'%}"></script>
+    <script src="{% static 'js/prism_okaidia.js'%}"></script>
+    {{form.media}}
     <!--编辑器尺寸，最大化-->
     <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap-markdown.min.css' %}">
     <!--编辑器图标-->
     <link rel="stylesheet" type="text/css" href="{% static 'font-awesome/css/font-awesome.min.css' %}">
-    <script src="{% static 'js/jquery.min.js' %}"></script>
-    <script src="{% static 'js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'js/markdown.js' %}"></script>
-    <script src="{% static 'js/to-markdown.js' %}"></script>
+    <!--<script src="{% static 'js/bootstrap.min.js' %}"></script>-->
+    <!--<script src="{% static 'js/markdown.js' %}"></script>-->
+    <!--<script src="{% static 'js/to-markdown.js' %}"></script>-->
     <script src="{% static 'js/bootstrap-markdown.js' %}"></script>
-    <script src="{% static 'js/bootstrap-markdown.fr.js' %}"></script>
+    <!--<script src="{% static 'js/bootstrap-markdown.fr.js' %}"></script>-->
 
-    <script type="text/javascript">
+    <!--<script type="text/javascript">
         (function ($) {
             $.fn.markdown.messages.zh = {
                 'Bold': "粗体",
@@ -46,8 +49,8 @@
             autofocus: true,
             language: 'zh',
         })
-    </script>
-    <script src="{% static 'js/marked.min.js'%}"></script>
+    </script>-->
+    <!--<script src="{% static 'js/marked.min.js'%}"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $(".content-markdown").each(function () {
@@ -56,12 +59,14 @@
                 $(this).html(markedcontent)
             })
         })
-    </script>
+    </script>-->
+
 </head>
 <body>
     
 
 <div class="container-fluid" id="center">
+    
     <div class="row">
         <div class="col-lg-2"></div>
         <div class="col-lg-8">
@@ -70,8 +75,8 @@
                     <h1>创建或编辑文章</h1>
                 </div>
                 {{form.title}}
-                <hr/> {{form.content}}
-                <hr/>
+                <hr> {{form.content}}
+                <hr>
                 <div class="row">
                     <div class="col-lg-3">{{form.category_id}}</div>
                     <div class="col-lg-3">{{form.image}}</div>

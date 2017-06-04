@@ -1,7 +1,7 @@
 #coding:utf-8
 from django.contrib.auth  import authenticate
 from django import forms
-from .models import Subscriber, Department
+from .models import Subscriber, Department, Role, Privilege
 
 class Register_Form(forms.ModelForm):
     class Meta:

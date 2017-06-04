@@ -4,11 +4,13 @@ from django.contrib import admin
 from django.contrib.auth.models import User
 
 class Privilege(models.Model):
+    """权限"""
     privilege_code = models.CharField(max_length=8)
     privilege_name = models.CharField(max_length=16)
     created_date = models.DateTimeField(auto_now_add=True)
 
 class Role(models.Model):
+    """角色"""
     role_code = models.CharField(max_length=8)
     role_name = models.CharField(max_length=16)
     #privileges = models.ManyToManyField(Privilege)
@@ -17,6 +19,7 @@ class Role(models.Model):
         return self.role_name
 
 class Department(models.Model):
+    """部门"""
     department_name = models.CharField(max_length=32)
     area_code = models.CharField(max_length=32)
     area_name = models.CharField(max_length=32)

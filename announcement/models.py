@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
+import mistune
 
 # Create your models here.
 
@@ -24,6 +25,7 @@ class Notification(models.Model):
     created_by = models.IntegerField()
     outdated = models.BooleanField(default=False)
     content = models.TextField()
+    content_html = models.TextField(null=True)
     image = models.FileField(null=True, blank=True)
 
     def __unicode__(self):
@@ -31,9 +33,14 @@ class Notification(models.Model):
 
     def get_category(self):
         return Category.objects.get(id=self.category_id)
-    
+
     def get_author(self):
         return User.objects.get(id=self.created_by)
 
     def get_absolute_url(self):
         return "/board/article/%d" % self.id
+    
+    def save(self):
+        markdown = mistune.Markdown()
+        self.content_html = markdown(self.content)
+        super(Notification, self).save()

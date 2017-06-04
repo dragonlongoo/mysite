@@ -53,6 +53,7 @@ INSTALLED_APPS = [
     'wiki',
     'django_tables2',
     'audit',
+    'pagedown',
 ]
 
 MIDDLEWARE = [
