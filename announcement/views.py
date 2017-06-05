@@ -172,7 +172,7 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
             return show_notifications(request, notifications=_notifications, category=_category)
         elif int(categoryid) == 9:
             _notifications = Notification.objects.filter(
-                category_id=categoryid, department_id=request.user.subscriber.department_id)
+                category_id=categoryid, created_by=request.user.id)
             return show_notifications(request, notifications=_notifications, category=_category)
         else:
             _notifications = Notification.objects.filter(category_id=int(categoryid))
