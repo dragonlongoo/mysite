@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 from django.contrib.auth.models import User
 from django.db import models
+from user.models import Department
 import mistune
 
 # Create your models here.
@@ -27,15 +28,22 @@ class Notification(models.Model):
     content = models.TextField()
     content_html = models.TextField(null=True)
     image = models.FileField(null=True, blank=True)
+    department_id = models.IntegerField(null=True)
 
     def __unicode__(self):
         return self.title
 
     def get_category(self):
+        """获取文章目录"""
         return Category.objects.get(id=self.category_id)
 
     def get_author(self):
+        """获取作者"""
         return User.objects.get(id=self.created_by)
+
+    def get_department(self):
+        """获取发表部门"""
+        return Department.objects.get(id=self.department_id)
 
     def get_absolute_url(self):
         return "/board/article/%d" % self.id
