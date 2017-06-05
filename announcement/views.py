@@ -105,13 +105,13 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
     if notificationid and not request.user.is_authenticated():
         _notification = get_object_or_404(Notification, id=int(notificationid))
         #文章目录ID=8为部门私有文章，未登录不允许查看
-        if _notification.category_id == 8:
+        if _notification.category_id == 7:
             context = {
                 "categoryid": _notification.category_id
             }
             return render(request, "error.html", context=context)
         #文章目录ID为9为个人私有文章，未登录不允许查看
-        elif _notification.category_id ==9:
+        elif _notification.category_id ==8:
             context = {
                 "categoryid": _notification.category_id
             }
@@ -124,7 +124,7 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
     elif notificationid and request.user.is_authenticated():
         _notification = get_object_or_404(Notification, id=int(notificationid))
         #文章目录ID=8为部门私有文章，非作者部门成员不允许查看
-        if _notification.category_id == 8:
+        if _notification.category_id == 7:
             if _notification.get_department() != request.user.subscriber.department:
                 context = {
                     "categoryid": _notification.category_id
@@ -133,7 +133,7 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
             else:
                 return show_notifications(request, notification=_notification, notifications=_notifications)
         #文章目录ID=9为个人私有文章，非作者不允许查看
-        elif _notification.category_id == 9:
+        elif _notification.category_id == 8:
             if _notification.get_author() != request.user:
                 context = {
                     "categoryid": _notification.category_id
@@ -148,13 +148,13 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
     elif categoryid and not request.user.is_authenticated():
         _category = Category.objects.get(id=categoryid)
         #文章目录ID=8为部门私有目录，未登录不允许查看
-        if int(categoryid) == 8:
+        if int(categoryid) == 7:
             context = {
                 "categoryid": _notification.category_id
             }
             return render(request, "error.html", context=context)
         #文章目录ID为9为个人私有目录，未登录不允许查看
-        elif int(categoryid) == 9:
+        elif int(categoryid) == 8:
             context = {
                 "categoryid": _notification.category_id
             }
@@ -166,11 +166,11 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
     #查看目录且用户已登录
     elif categoryid and request.user.is_authenticated():
         _category = Category.objects.get(id=int(categoryid))
-        if int(categoryid) == 8:
+        if int(categoryid) == 7:
             _notifications = Notification.objects.filter(
                 category_id=int(categoryid), department_id=request.user.subscriber.department_id)
             return show_notifications(request, notifications=_notifications, category=_category)
-        elif int(categoryid) == 9:
+        elif int(categoryid) == 8:
             _notifications = Notification.objects.filter(
                 category_id=categoryid, created_by=request.user.id)
             return show_notifications(request, notifications=_notifications, category=_category)
