@@ -6,18 +6,19 @@ from mysite import settings
 # Create your views here.
 
 def show_home_page(request):
-    _role = None
-    _notifications = Notification.objects.all()
-    _user = None
-    if request.user.is_authenticated():
-        _role = request.user.subscriber.role
-        _user = request.user
-    context = {
-        "notifications": _notifications,
-        "role": _role,
-        "user": _user
-        }
-    return render(request, "article_list.html", context)
+    # _role = None
+    # _notifications = Notification.objects.all()
+    # _user = None
+    # if request.user.is_authenticated():
+    #     _role = request.user.subscriber.role
+    #     _user = request.user
+    # context = {
+    #     "notifications": _notifications,
+    #     "role": _role,
+    #     "user": _user
+    #     }
+    # return render(request, "article_list.html", context)
+    return render(request, "article_index.html")
 
 def show_notifications(request, notification=None, notifications=None, category=None):
     _editable = False
