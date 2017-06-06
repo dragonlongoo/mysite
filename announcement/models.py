@@ -20,15 +20,15 @@ class Notification(models.Model):
         verbose_name = "公告"
         verbose_name_plural = "公告"
     title = models.CharField(max_length=128)
-    category_id = models.IntegerField()
+    category_id = models.IntegerField(db_index=True)
     created_date = models.DateTimeField(auto_now_add=True)
     updated_date = models.DateTimeField(auto_now=True, null=True)
-    created_by = models.IntegerField()
+    created_by = models.IntegerField(db_index=True)
     outdated = models.BooleanField(default=False)
     content = models.TextField()
     content_html = models.TextField(null=True)
     image = models.FileField(null=True, blank=True)
-    department_id = models.IntegerField(null=True)
+    department_id = models.IntegerField(null=True, db_index=True)
 
     def __unicode__(self):
         return self.title

@@ -111,7 +111,7 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
             }
             return render(request, "error.html", context=context)
         #文章目录ID为9为个人私有文章，未登录不允许查看
-        elif _notification.category_id ==8:
+        elif _notification.category_id == 8:
             context = {
                 "categoryid": _notification.category_id
             }
