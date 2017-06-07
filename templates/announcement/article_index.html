@@ -36,7 +36,8 @@
                         </a>
                     </li>
                 </ul>
-                <hr> {% endif %}
+                <hr> 
+                {% endif %}
                 <ul class="nav nav-sidebar">
                     <li>
                         <a class="a1" href="{% url 'notification_category' 6 %}">
@@ -97,7 +98,8 @@
                     <li><a class="a1" href="">&nbsp&nbsp&nbsp即销即通</a></li>
                     {% endif %}
                 </ul>
-                <hr> {% if user %}
+                <hr>
+                {% if user %}
                 <ul class="nav nav-sidebar">
                     <li>
                         <a class="a1" href="{% url 'notification_category' 7 %}">
@@ -112,7 +114,9 @@
                         </a>
                     </li>
                 </ul>
-                <hr> {% endif %} {% if user %}
+                <hr>
+                {% endif %}
+                {% if user %}
                 <ul class="nav nav-sidebar">
                     <li>
                         <a href="#" class="a1" data-toggle="dropdown">
@@ -123,7 +127,8 @@
                         </ul>
                     </li>
                 </ul>
-                <hr> {% endif %}
+                <hr>
+                {% endif %}
             </div>
             <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
                 <h1>关于平台</h1>
