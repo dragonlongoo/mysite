@@ -1,21 +1,43 @@
-<link rel="stylesheet" href="editormd.min.css" />
-<script src="jquery.min.js"></script>
-<script src="editormd.min.js"></script>
-<script type="text/javascript">
-    $(function() {
-        var editor = editormd("editormd", {
-            path : "../lib/" // Autoload modules mode, codemirror, marked... dependents libs path
-        });
+<!DOCTYPE html> {% load staticfiles %}
+<html>
 
-        /*
-        // or
-        var editor = editormd({
-            id   : "editormd",
-            path : "../lib/"
-        });
-        */
-    });
-</script>
-<div id="editormd">
-    <textarea style="display:none;">### Hello Editor.md !</textarea>
-</div>
+<head>
+    
+</head>
+
+<body>
+    <table id="t1">
+        <thead>
+            <tr>
+                <td>col_1</td>
+                <td>col_2</td>
+                <td>col_3</td>
+                <td>col_4</td>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>col_1</td>
+                <td>col_2</td>
+                <td>col_3</td>
+                <td>col_4</td>
+            </tr>
+            <tr>
+                <td>col_1</td>
+                <td>col_2</td>
+                <td>col_3</td>
+                <td>col_4</td>
+            </tr>
+            <tr>
+                <td>col_1</td>
+                <td>col_2</td>
+                <td>col_3</td>
+                <td>col_4</td>
+            </tr>
+        </tbody>
+    </table>
+
+<script src="{% static 'js/myjs.js' %}"></script>
+</body>
+
+</html>

@@ -1,11 +1,12 @@
 #coding:utf-8
 from django.shortcuts import render, HttpResponse, HttpResponseRedirect, get_object_or_404
-from .models import *
-from .forms import *
-from mysite import settings
+from announcement.models import Notification, Category
+from announcement.forms import PostForm
+
 # Create your views here.
 
 def show_home_page(request):
+    """home page"""
     _role = None
     # _notifications = Notification.objects.all()
     _user = None
@@ -21,6 +22,7 @@ def show_home_page(request):
     return render(request, "article_index.html", context=context)
 
 def show_notifications(request, notification=None, notifications=None, category=None):
+    """显示文章"""
     _editable = False
     _role = None
     _user = None
@@ -57,6 +59,7 @@ def show_notifications(request, notification=None, notifications=None, category=
 
 
 def create_notification(request):
+    """创建文章"""
     if request.user.is_authenticated():
         postform = PostForm(request.POST or None, request.FILES or None)
         if request.method == "POST" and postform.is_valid():
@@ -85,6 +88,7 @@ def create_notification(request):
 
 
 def edit_notification(request, notificationid=None):
+    """编辑文章"""
     _notification = get_object_or_404(Notification, id=notificationid)
     _postform = PostForm(request.POST or None, request.FILES or None, instance=_notification)
     if request.method == "POST" and _postform.is_valid():
@@ -100,6 +104,7 @@ def edit_notification(request, notificationid=None):
 
 
 def view_or_handle_notification(request, notificationid=None, categoryid=None):
+    """查看或处理文章"""
     _notification = None
     _notifications = None
     #查看单篇文章且未登录
@@ -120,7 +125,8 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
         #公共文章
         else:
             # _notifications = Notification.objects.filter(category_id=_notification.category_id)
-            return show_notifications(request, notification=_notification, notifications=_notifications)
+            return show_notifications(
+                request, notification=_notification, notifications=_notifications)
     # 查看单篇文章且用户已登录
     elif notificationid and request.user.is_authenticated():
         _notification = get_object_or_404(Notification, id=int(notificationid))
@@ -132,7 +138,8 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
                 }
                 return render(request, "error.html", context=context)
             else:
-                return show_notifications(request, notification=_notification, notifications=_notifications)
+                return show_notifications(
+                    request, notification=_notification, notifications=_notifications)
         #文章目录ID=9为个人私有文章，非作者不允许查看
         elif _notification.category_id == 8:
             if _notification.get_author() != request.user:
@@ -141,10 +148,12 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
                 }
                 return render(request, "error.html", context=context)
             else:
-                return show_notifications(request, notification=_notification, notifications=_notifications)
+                return show_notifications(
+                    request, notification=_notification, notifications=_notifications)
         else:
             #公共文章
-            return show_notifications(request, notification=_notification, notifications=_notifications)
+            return show_notifications(
+                request, notification=_notification, notifications=_notifications)
     #查看目录且未登录
     elif categoryid and not request.user.is_authenticated():
         _category = Category.objects.get(id=categoryid)
@@ -183,3 +192,7 @@ def view_or_handle_notification(request, notificationid=None, categoryid=None):
             "message":"未在文章或目录"
         }
         return render(request, "error.html", context=context)
+
+def test(request):
+    """测试页面"""
+    return render(request, "test.html")

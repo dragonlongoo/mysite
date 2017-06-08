@@ -8,6 +8,7 @@ import mistune
 # Create your models here.
 
 class Category(models.Model):
+    """目录"""
     category_code = models.CharField(max_length=8)
     category_name = models.CharField(max_length=32)
     created_date = models.DateTimeField(auto_now_add=True)
@@ -16,6 +17,7 @@ class Category(models.Model):
         return self.category_name
 
 class Notification(models.Model):
+    """文章"""
     class Meta:
         verbose_name = "公告"
         verbose_name_plural = "公告"
@@ -46,9 +48,11 @@ class Notification(models.Model):
         return Department.objects.get(id=self.department_id)
 
     def get_absolute_url(self):
+        """获取url"""
         return "/board/article/%d" % self.id
-    
+
     def save(self):
+        """保存文章"""
         markdown = mistune.Markdown()
         self.content_html = markdown(self.content)
         super(Notification, self).save()

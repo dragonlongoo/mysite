@@ -127,3 +127,14 @@ h1 {
 hr {
   margin: 0px;
 }
+
+
+table {
+  border: 1px solid black;
+  border-collapse: collapse;
+  table-layout: auto;
+  }
+
+td, th {
+  border: 1px solid black;
+  }

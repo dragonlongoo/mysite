@@ -21,4 +21,5 @@ urlpatterns = [
         ),
     url(r'^create/$', views.create_notification, name="notification_create"),
     # url(r'^search/$', include('haystack.urls'), name="n_search"),
+    url(r'^test/$', views.test, name="test"),
 ]
