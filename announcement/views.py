@@ -60,10 +60,10 @@ def show_notifications(request, notification=None, notifications=None, category=
 
 def create_notification(request):
     """创建文章"""
-    if request.user.is_authenticated():
+    if request.user.is_authenticated() and request.user.subscriber.role == 'editor':
         postform = PostForm(request.POST or None, request.FILES or None)
         if request.method == "POST" and postform.is_valid():
-            image = postform.cleaned_data["image"]
+            attachment = postform.cleaned_data["attachment"]
             category_id = postform.cleaned_data["category_id"]
             title = postform.cleaned_data["title"]
             content = postform.cleaned_data["content"]
@@ -72,7 +72,7 @@ def create_notification(request):
                 created_by=request.user.id,
                 content=content,
                 title=title,
-                image=image,
+                attachment=attachment,
                 department_id=request.user.subscriber.department.id
             )
             notification.save()
@@ -84,23 +84,26 @@ def create_notification(request):
             }
             return render(request, "article_post.html", context)
     else:
-        return HttpResponse("请先登录")
+        return HttpResponse("未登录或非编辑角色")
 
 
 def edit_notification(request, notificationid=None):
     """编辑文章"""
     _notification = get_object_or_404(Notification, id=notificationid)
     _postform = PostForm(request.POST or None, request.FILES or None, instance=_notification)
-    if request.method == "POST" and _postform.is_valid():
-        instance = _postform.save(commit=False)
-        instance.save()
-        return HttpResponseRedirect(_notification.get_absolute_url())
-        # return HttpResponseRedirect(instance.get_absolute_url())
+    if request.user.is_authenticated() and request.user.id == _notification.created_by:
+        if request.method == "POST" and _postform.is_valid():
+            instance = _postform.save(commit=False)
+            instance.save()
+            return HttpResponseRedirect(_notification.get_absolute_url())
+            # return HttpResponseRedirect(instance.get_absolute_url())
+        else:
+            context = {
+                "form": _postform
+            }
+            return render(request, "article_post.html", context=context)
     else:
-        context = {
-            "form": _postform
-        }
-        return render(request, "article_post.html", context=context)
+        return HttpResponse("未登录或非创建者本人")
 
 
 def view_or_handle_notification(request, notificationid=None, categoryid=None):

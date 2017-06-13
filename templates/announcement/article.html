@@ -34,8 +34,8 @@
                 <div class="jumbotron" id="j1">
                     <h2>{{notification.title}}</h2>
                     {{author}}{{notification.created_date}}
-                    {% if notification.image %} 附件：
-                    <a href="{{notification.image.url}}">{{notification.image}}</a> {% endif %}
+                    {% if notification.attachment %} 附件：
+                    <a href="{{notification.attachment.url}}">{{notification.attachment}}</a> {% endif %}
                     <br>
                     {% if editable%}
                     <a href="{% url 'notification_edit' notification.id %}" class="btn btn-success btn-sm">编辑</a>

@@ -29,7 +29,9 @@ class Notification(models.Model):
     outdated = models.BooleanField(default=False)
     content = models.TextField()
     content_html = models.TextField(null=True)
-    image = models.FileField(null=True, blank=True)
+    attachment = models.FileField(null=True, blank=True)
+    image = models.ImageField(null=True)
+    path = models.FilePathField(null=True)
     department_id = models.IntegerField(null=True, db_index=True)
 
     def __unicode__(self):

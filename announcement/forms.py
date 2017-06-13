@@ -1,7 +1,7 @@
 #coding:utf-8
 from django import forms
 from .models import *
-# from pagedown.widgets import PagedownWidget
+from pagedown.widgets import PagedownWidget
 from haystack.forms import ModelSearchForm
 
 
@@ -16,7 +16,7 @@ class PostForm(forms.ModelForm):
             "title",
             "content",
             "category_id",
-            "image"
+            "attachment"
         ]
         widgets={
             "category_id": forms.Select(attrs={'class': 'form-control'}),
