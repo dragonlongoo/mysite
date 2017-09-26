@@ -21,17 +21,18 @@ class PostForm(forms.ModelForm):
         widgets={
             "category_id": forms.Select(attrs={'class': 'form-control'}),
             "title": forms.TextInput(attrs={"placeholder": "标题", "class": "form-control"}),
-            "content": forms.Textarea(
-                attrs={
-                    "name": "content",
-                    "data-provide": "markdown",
-                    "data-iconlibrary": "fa",
-                    "rows": "10",
-                    "id": "editor"
-                    }
-                ),
-            # "content": PagedownWidget(),
-            # "content": PagedownWidget(attrs={"template": "default.html"}),
+            # "content": forms.Textarea(
+            #     attrs={
+            #         "name": "content",
+            #         "data-provide": "markdown",
+            #         "data-iconlibrary": "fa",
+            #         "rows": "10",
+            #         "id": "editor",
+            #         # "@input": "update"
+            #         }
+            #     ),
+            "content": PagedownWidget(),
+            # "content": PagedownWidget(css=("custom_pagedown.css")),
             # "image": forms.ClearableFileInput(
             #     attrs={
             #         "multiple": True

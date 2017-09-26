@@ -41,7 +41,8 @@
   padding: 20px;
   overflow-x: hidden;
   overflow-y: auto; /* Scrollable contents if viewport is shorter than content. */
-  background-color: black;
+  /*background-color: black;*/
+  background-color: lightslategrey;
   border-right: 1px solid white;
 }
 
@@ -98,7 +99,8 @@
 .a1 {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-style: normal;
-  color: lightgrey;
+  /*color: lightgrey;*/
+  color: black;
 }
 
 .a2{

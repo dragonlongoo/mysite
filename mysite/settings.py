@@ -165,4 +165,3 @@ STATIC_DIRS = [
 STATICFILES_DIR = (
     os.path.join(BASE_DIR, "static"),
 )
-
